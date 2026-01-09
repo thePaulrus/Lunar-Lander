@@ -117,6 +117,7 @@ void Lander::Reset()
     m_State = LanderStates::Off;
     m_pPhysicsBody->SetAngularVelocity(0.0);
     m_pPhysicsBody->SetLinearVelocity(b2Vec2(0,0));
+    //make a start point veriable
     m_pPhysicsBody->SetTransform(b2Vec2(5, 8), 0);
 
     m_pPhysicsBody->SetType(b2_dynamicBody);

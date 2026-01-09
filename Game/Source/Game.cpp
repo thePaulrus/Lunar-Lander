@@ -17,12 +17,15 @@
 #include "Meshes/Shapes.h"
 #include "Meshes/VertexFormats.h"
 
+//scenes
 #include "Scenes/Scene.h"
 #include "Scenes/DayOneScene.h"
 #include "Scenes/DiceScene.h"
 #include "Scenes/PinBallScene.h"
 #include "Scenes/MidtermScene.h"
 #include "Scenes/LunarLanderScene.h"
+#include "Scenes/Level1.h"
+#include "Scenes/TestLevel.h"
 #include "Scenes/MeshScene.h"
 #include "Scenes/LightScene.h"
 #include "Scenes/GolfScene.h"
@@ -68,14 +71,14 @@ Game::Game(fw::FWCore& fwCore)
 
 
   
-    m_pScenes.push_back(new DayOneScene(this));
-    m_pScenes.push_back(new DiceScene(this));
+    m_pScenes.push_back(new Level1(this));
+    m_pScenes.push_back(new TestLevel(this));
     m_pScenes.push_back(new PinBallScene(this));
     m_pScenes.push_back(new LunarLanderScene(this));
     m_pScenes.push_back(new MeshScene(this));
     m_pScenes.push_back(new LightScene(this));
     m_pScenes.push_back(new GolfScene(this));
-    m_CurrentScene = 3;
+    m_CurrentScene = 0;
 }
 
 Game::~Game()
