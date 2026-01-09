@@ -32,17 +32,13 @@
 #define B2_USER_SETTINGS
 #include "box2d/include/box2D/box2d.h"
 
-//networking
-#include <winsock.h>
-char g_WebBuffer[100001];
+
 
 
 Game::Game(fw::FWCore& fwCore)
     : GameCore( fwCore )
 {
-    //networking
-    WSAData wsaData;
-    WSAStartup(MAKEWORD(1, 1), &wsaData);
+    
  
 
 
@@ -71,6 +67,7 @@ Game::Game(fw::FWCore& fwCore)
     LoadResources( m_pResources );
 
 
+  
     m_pScenes.push_back(new DayOneScene(this));
     m_pScenes.push_back(new DiceScene(this));
     m_pScenes.push_back(new PinBallScene(this));
@@ -78,7 +75,7 @@ Game::Game(fw::FWCore& fwCore)
     m_pScenes.push_back(new MeshScene(this));
     m_pScenes.push_back(new LightScene(this));
     m_pScenes.push_back(new GolfScene(this));
-    m_CurrentScene = 6;
+    m_CurrentScene = 3;
 }
 
 Game::~Game()
@@ -149,39 +146,6 @@ void Game::Update(float deltaTime)
     Editor_DisplayObjectList();
     Editor_DisplayResources();
 
-    //networking
-    if (ImGui::Button("Get Web Page")) {
-        int socketHandle = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-
-        sockaddr_in serverAddress;
-        in_addr ipAddress;
-
-        struct hostent* pHost = gethostbyname("www.google.com");
-        if (pHost)
-        {
-            ipAddress = *(struct in_addr*)*pHost->h_addr_list;
-        }
-
-        memset((char*)&serverAddress, 0, sizeof(sockaddr_in));
-        serverAddress.sin_family = AF_INET;
-        serverAddress.sin_port = htons(80);
-        serverAddress.sin_addr.s_addr = ipAddress.s_addr;
-
-        int ret = connect(socketHandle, (sockaddr*)&serverAddress, sizeof(sockaddr));
-        if (ret != -1)
-        {
-            // We connected.
-            const char* requeststr = "GET http://www.google.ca/ HTTP/1.0\r\nHost: www.google.com\r\nUser-Agent: TestCode/1.0 (Win32)\r\n\r\n";
-            int bytesSent = (int)send(socketHandle, requeststr, strlen(requeststr), 0);
-                
-            int bytesreceived = (int)recv(socketHandle, g_WebBuffer, 100000, 0);
-            g_WebBuffer[bytesreceived] = 0;
-        }
-
-    }
-
-    //networking
-    ImGui::TextWrapped("%s", g_WebBuffer);
 
 }
 
@@ -255,25 +219,25 @@ void Game::Editor_DisplayResources()
 
     ImGui::Begin("Scenes");
 
-    if (ImGui::Button("DayOneScene")) {
+    if (ImGui::Button("level 1")) {
         m_CurrentScene = 0;   
     }
-    if (ImGui::Button("DiceScene")) {
+    if (ImGui::Button("2")) {
         m_CurrentScene = 1;   
     }
-    if (ImGui::Button("PinBallScene")) {
+    if (ImGui::Button("3")) {
         m_CurrentScene = 2;
     }
-    if (ImGui::Button("LanderScene")) {
+    if (ImGui::Button("4")) {
         m_CurrentScene = 3;
     }
-    if (ImGui::Button("MeshScene")) {
+    if (ImGui::Button("5")) {
         m_CurrentScene = 4;
     }
-    if (ImGui::Button("LightScene")) {
+    if (ImGui::Button("6")) {
         m_CurrentScene = 5;
     }
-    if (ImGui::Button("FinalScene")) {
+    if (ImGui::Button("7")) {
         m_CurrentScene = 6;
     }
     

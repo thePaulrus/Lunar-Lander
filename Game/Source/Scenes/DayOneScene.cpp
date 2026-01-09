@@ -47,7 +47,7 @@ DayOneScene::DayOneScene(Game* game) :
     //m_pObjects[4]->CreateSquareBody(false, 0);
     //m_pObjects[6]->CreateCircleBody(true, 1);
     m_pObjects[7]->SetScale(10);
-
+    
     m_pDebugDraw = new PhysDebugDraw();
     m_pDebugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_aabbBit);
     m_pDebugDraw->m_ShaderHandle = getMaterial("Blue")->GetShader()->GetProgram();
