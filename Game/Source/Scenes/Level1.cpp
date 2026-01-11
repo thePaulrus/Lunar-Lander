@@ -29,7 +29,7 @@ Level1::Level1(Game* game) :
 #define getMesh game->GetResources()->Get<fw::Mesh>
 #define getMaterial game->GetResources()->Get<fw::Material>
 
-    m_pLander = new Lander(this, "Lander1", vec3(0, 8, 0), getMesh("Sprite"), getMaterial("LanderBoth"), game->GetEventManager(), game->GetController());
+    m_pLander = new Lander(this, "Lander1", vec3(0, 10, 0), getMesh("Sprite"), getMaterial("LanderBoth"), game->GetEventManager(), game->GetController());
     m_pLander->SetScale(vec3(2, 2, 1));
     m_pLander->CreateSquareBody(true, 0.0, false);
     m_pObjects.push_back(m_pLander);

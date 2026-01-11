@@ -27,12 +27,17 @@ public:
 
 protected:
     void UpdateTexture();
+    
+    //start pos
+    //vec2 GetStartPos();
+    //void SetStartPos(vec2 startPos);
 
     void Reset();
 
 protected:
 
     vec2 m_Controls = 0;
+    vec2 m_StartPos = vec2(0,0);
     fw::VirtualController* m_Controller;
 
     int m_State;

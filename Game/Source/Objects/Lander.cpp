@@ -10,6 +10,9 @@ Lander::Lander(fw::Scene* scene, std::string name, vec3 pos, fw::Mesh* pMesh, fw
     m_Controller = controller;
 
     m_State = LanderStates::Off;
+
+    //set start pos
+    m_StartPos = vec2(pos.x,pos.y);
 }
 
 Lander::~Lander()
@@ -112,13 +115,22 @@ void Lander::UpdateTexture()
     }
 }
 
+//vec2 Lander::GetStartPos()
+//{
+//    return m_StartPos;
+//}
+//
+//void Lander::SetStartPos(vec2 startPos)
+//{
+//    m_StartPos = startPos;
+//}
+
 void Lander::Reset()
 {
     m_State = LanderStates::Off;
     m_pPhysicsBody->SetAngularVelocity(0.0);
     m_pPhysicsBody->SetLinearVelocity(b2Vec2(0,0));
-    //make a start point veriable
-    m_pPhysicsBody->SetTransform(b2Vec2(5, 8), 0);
+    m_pPhysicsBody->SetTransform(b2Vec2(m_StartPos.x, m_StartPos.y), 0);
 
     m_pPhysicsBody->SetType(b2_dynamicBody);
 
