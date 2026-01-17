@@ -43,6 +43,8 @@ DayOneScene::DayOneScene(Game* game) :
     m_pObjects.push_back(new fw::GameObject(this, "Object 5", vec3(1, 9, 0), getMesh("OBJ"), getMaterial("Red")));
     m_pObjects.push_back(new fw::GameObject(this, "Object 6", vec3(1, 7, 0), getMesh("Circle"), getMaterial("Blue")));
     m_pObjects.push_back(new fw::GameObject(this, "Box1", vec3(0, 0, 10), getMesh("RectC"), getMaterial("DebugNormals")));
+    m_pObjects.push_back(new fw::GameObject(this, "MouseCircle", vec3(0, 0, 0), getMesh("Circle"), getMaterial("Green")));
+
 
     //m_pObjects[4]->CreateSquareBody(false, 0);
     //m_pObjects[6]->CreateCircleBody(true, 1);
@@ -54,17 +56,24 @@ DayOneScene::DayOneScene(Game* game) :
     m_pDebugDraw->m_pUniforms = game->GetUniforms();
 
     m_pWorld->SetDebugDraw(m_pDebugDraw);
+    //debug controller. 
+    ptempcontroller = new fw::VirtualController();
 }
 
 DayOneScene::~DayOneScene()
 {
+    delete ptempcontroller;
 }
+
 
 void DayOneScene::Update(float DeltaTime)
 {
 
     PhysicsUpdate(DeltaTime);
 
+    //mouse test
+    
+    m_pObjects[8]->SetPosition(ptempcontroller->GetMousePos() /5 );
  
 
     for (int i = 0; i < m_pObjects.size(); i++) {

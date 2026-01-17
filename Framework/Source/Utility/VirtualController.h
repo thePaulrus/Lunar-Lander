@@ -2,13 +2,15 @@
 
 #include "CoreHeaders.h"
 #include "EventSystem/EventManager.h"
+#include "Math/Vector.h"
 
 namespace fw {
     class Event;
-
+ 
     class VirtualController : public EventListener
     {
     protected:
+        vec2 m_MousePos;
         unsigned int m_LastActions = 0;
         unsigned int m_Actions = 0;
     public:
@@ -34,6 +36,10 @@ namespace fw {
 
         //event managment
         void ReceiveEvents(Event* pEvent);
+
+        //mouse stuff
+        void UpdateMousePos();
+        vec2 GetMousePos();
 
         //getters
         bool IsPressed(Actions action);

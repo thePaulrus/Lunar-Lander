@@ -1,4 +1,8 @@
 #include "VirtualController.h"
+#include <imgui/imgui.h>
+//#include "Math/Vector.h"
+
+//#include <SFML>
 
 namespace fw {
 	VirtualController::VirtualController()
@@ -56,6 +60,20 @@ namespace fw {
 				}
 			}
 		}
+	}
+
+	void VirtualController::UpdateMousePos()
+	{
+		ImVec2 ImPos = ImGui::GetCursorPos();
+
+		m_MousePos = vec2(ImPos.x, ImPos.y);
+			
+	}
+
+	vec2 VirtualController::GetMousePos()
+	{
+		UpdateMousePos();
+		return m_MousePos;
 	}
 
 	bool VirtualController::IsPressed(Actions action)

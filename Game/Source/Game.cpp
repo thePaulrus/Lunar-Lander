@@ -74,7 +74,7 @@ Game::Game(fw::FWCore& fwCore)
     m_pScenes.push_back(new Level1(this));
     m_pScenes.push_back(new TestLevel(this));
     m_pScenes.push_back(new PinBallScene(this));
-    m_pScenes.push_back(new LunarLanderScene(this));
+    m_pScenes.push_back(new DayOneScene(this));
     m_pScenes.push_back(new MeshScene(this));
     m_pScenes.push_back(new LightScene(this));
     m_pScenes.push_back(new GolfScene(this));

@@ -25,5 +25,7 @@ protected:
 	Player* m_pPlayer;
 	Lander* m_pLander;
 	class PhysDebugDraw* m_pDebugDraw;
+
+	fw::VirtualController* ptempcontroller;
 	
 };
